@@ -1,9 +1,10 @@
-<script>
-$(function () {
-    $('#amount').change(function () {
-         var $this = $(this);
+<form action="movie.php" method="post" onsubmit="doTheMath()">
+<script type="text/javascript">
+function doTheMath() 
+{
+     // do something
 
-        $this.next('label').text((parseFloat($this.val()) * .555).toFixed(2))            
-    });        
-});​
+     // submit the form
+     return true;
+}
 </script>
