@@ -1,37 +1,3 @@
-// Get form element and attach a submit event listener:
-const form = document.getElementById('form')
-form.addEventListener('submit', handleSubmit)
-
-// Submit event handler:
-function handleSubmit(event) {
-  // Prevent page from reloading (default behavior on submit event):
-  event.preventDefault()
-
-  // Get form data from the form (event.target is the form element):
-  const formData = new FormData(event.target)
-  // Get user inputs:
-  // parseInt converts it to integers, 10 is the radix, so we get it in base-10:
-  const roomCount = parseInt(formData.get('roomCount'), 10)
-  // parseFloat to get floats:
-  const buildingArea = parseFloat(formData.get('buildingArea'))
-
-  // Calculate what we need
-  totalNozzle = 16 % buildingArea
-  nozzleInRoom = totalNozzle / roomCount
-
-  // Update result
-  updateResult(totalNozzle, nozzleInRoom)
-}
-
-function updateResult(totalNozzle, nozzleInRoom) {
-  // Select result element:
-  const result = document.getElementById('result')
-
-  // Setting innerHTML to an element will overwrite its content:
-  // Strings denoted with backticks (``) are template strings, use ${variable} syntax to 
-  // interpolate values from the variables:
-  result.innerHTML = `You will need ${totalNozzle} nozzles. You will have roughly ${nozzleInRoom} per room`
-}
 
 <form id="form">
   <label>
@@ -45,3 +11,30 @@ function updateResult(totalNozzle, nozzleInRoom) {
   <button type="submit">Calculate</button>
   <div id="result"></div>
 </form>
+
+
+
+<script>
+const form = document.getElementById('form')
+form.addEventListener('submit', handleSubmit)
+
+function handleSubmit(event) {
+  event.preventDefault()
+
+  const formData = new FormData(event.target)
+  const roomCount = parseInt(formData.get('roomCount'), 10)
+  const buildingArea = parseFloat(formData.get('buildingArea'))
+
+  totalNozzle = 16 % buildingArea
+  nozzleInRoom = totalNozzle / roomCount
+
+  updateResult(totalNozzle, nozzleInRoom)
+}
+
+function updateResult(totalNozzle, nozzleInRoom) {
+  const result = document.getElementById('result')
+
+  result.innerHTML = `You will need ${totalNozzle} nozzles. You will have roughly ${nozzleInRoom} per room`
+}
+
+</script>
